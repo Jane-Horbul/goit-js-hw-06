@@ -61,8 +61,6 @@ console.log(calculateTotalBalance(users)); // 20916
 
 //task-8
 
-//const getUsersWithFriend = (users, friendName) => users.some(user => user.friends = friendName);
-
 const getUsersWithFriend = (users, friendName) => {
 
     const usersWithFriend = users.filter(function (user) {
@@ -76,4 +74,34 @@ const getUsersWithFriend = (users, friendName) => {
 console.log(getUsersWithFriend(users, 'Briana Decker')); // [ 'Sharlene Bush', 'Sheree Anthony' ]
 console.log(getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma Head', 'Sheree Anthony' ]
 
+//task-9
+const getNamesSortedByFriendsCount = users => {
 
+    const numFr = [...users].sort(function (prevUser, nextUser) {
+        return prevUser.friends.length - nextUser.friends.length;
+    })
+
+    return numFr.map(user => user.name);
+
+};
+
+console.log(getNamesSortedByFriendsCount(users));
+// [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
+
+//task-10
+const getSortedUniqueSkills = users => {
+    const allSkills = users.reduce((acc, user) => {
+        acc.push(...user.skills);
+        return acc
+    }, []);
+    //console.log(allSkills);
+    const uniqueSkills = allSkills.filter((skill, index, arr) => { 
+        return arr.indexOf(skill) === index;
+    });
+    //console.log(uniqueSkills);
+    return uniqueSkills.sort();
+};
+
+console.log(getSortedUniqueSkills(users));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 
+//'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
